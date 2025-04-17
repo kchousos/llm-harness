@@ -1,6 +1,4 @@
-<center>
-<h1>🚧⚠️ Under Construction ⚠️🚧</h1>
-</center>
+<h1 align='center'>🚧⚠️ Under Construction ⚠️🚧</h1>
 
 This project uses LLMs to automatically generate fuzzing harnesses for your
 C/C++ project.
