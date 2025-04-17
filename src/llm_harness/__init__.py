@@ -128,7 +128,11 @@ def write_harness(harness, project_path):
     If other harnessess with the same filename exist, a new file is created
     with an incremented index.
     """
-    harness_path = unique_filename(project_path + "/harnesses" + "/fuzz.c")
+    directory = project_path + "/harnesses"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    harness_path = unique_filename(directory + "/fuzz.c")
 
     with open(harness_path, "w", encoding="utf-8") as f:
         f.write(harness)
