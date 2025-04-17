@@ -91,7 +91,7 @@ def get_project_info(project_path: str) -> str:
     return "".join(file_contents)
 
 
-def create_harness(model, project_info) -> str:
+def create_harness(model: str, project_info: str) -> str:
     """
     Calls the LLM to create a harness for the project.
     """
@@ -121,7 +121,7 @@ def create_harness(model, project_info) -> str:
     return response[0]
 
 
-def write_harness(harness, project_path):
+def write_harness(harness: str, project_path: str) -> None:
     """
     Writes the harness in the project's `harnesses/` directory.
 
