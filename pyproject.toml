@@ -1,0 +1,28 @@
+[project]
+name = "llm-harness"
+version = "0.1.0"
+description = "LLM-generated harnesses for your C/C++ project."
+authors = [
+    {name = "Konstantinos Chousos",email = "kon.chousos@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "dspy (>=2.6.17,<3.0.0)",
+    "argparse (>=1.4.0,<2.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "llm_harness", from = "src"}]
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.5"
+
+
+[tool.poetry.group.docs.dependencies]
+pdoc = "^15.0.2"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
