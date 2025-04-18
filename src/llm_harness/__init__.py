@@ -42,7 +42,8 @@ def parse_arguments() -> tuple[str, str]:
 
     parser.add_argument(
         "project",
-        help="Name of the project under the `assets/` directory, for which harnesses are to be generated.",
+        help="Name of the project under the `assets/` directory, for which \
+              harnesses are to be generated.",
     )
     parser.add_argument(
         "-m", "--model", default="gpt-4.1-mini", type=str, help="LLM model to be used."
@@ -58,7 +59,7 @@ def parse_arguments() -> tuple[str, str]:
             f"Model {model} not available. Available models: {available_models}",
             file=sys.stderr,
         )
-        exit(-1)
+        sys.exit(-1)
 
     return path, model
 
