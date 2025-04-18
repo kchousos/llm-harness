@@ -26,4 +26,4 @@ jobs:
       - name: Build docs with pdoc
         run: |
           export PYTHONPATH=src
-          poetry run pdoc llm_harness --output-dir docs
+          poetry run pdoc llm_harness --docformat google --output-dir docs
