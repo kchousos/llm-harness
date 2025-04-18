@@ -5,9 +5,9 @@ C/C++ project.
 ---
 """
 
-import sys
 import os
 import argparse
+import logging
 import dspy
 from dotenv import load_dotenv
 
@@ -45,7 +45,7 @@ def parse_arguments() -> tuple[str, str]:
         help="Name of the project under the `assets/` directory, for which \
               harnesses are to be generated.",
     )
-    parser.add_argument(
+    model_arg = parser.add_argument(
         "-m", "--model", default="gpt-4.1-mini", type=str, help="LLM model to be used."
     )
 
@@ -55,11 +55,13 @@ def parse_arguments() -> tuple[str, str]:
     model = args.model
 
     if model not in available_models:
-        print(
-            f"Model {model} not available. Available models: {available_models}",
-            file=sys.stderr,
+        logging.warning(
+            " Model %s not available. Available models: %s.\nWill use the default model (%s)",
+            model,
+            available_models,
+            model_arg.default,
         )
-        sys.exit(-1)
+        model = model_arg.default
 
     return path, model
 
