@@ -139,10 +139,16 @@ def main() -> None:
 
     project_path, model = parse_arguments()
 
+    print("Reading project and collecting information...")
     project_info = get_project_info(project_path)
 
+    print("Calling LLM to generate a harness...")
     harness = create_harness(model=model, project_info=project_info)
+
+    print("Writing harness to project...")
     write_harness(harness=harness, project_path=project_path)
+
+    print("All done!")
 
 
 if __name__ == "__main__":
