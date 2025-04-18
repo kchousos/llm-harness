@@ -14,7 +14,8 @@ from loguru import logger
 
 def unique_filename(base_path: str) -> str:
     """
-    Creates a unique filename by appending an incrementing suffix (e.g. file_1.txt)
+    Creates a unique filename by appending an incrementing suffix
+    (e.g. file_1.txt)
 
     Args:
         base_path (str): The intended filename, besides the suffix.
@@ -41,14 +42,22 @@ def parse_arguments() -> tuple[str, str]:
     """
     Parses the command-line arguments.
 
-    Specifically, it reads the project to be fuzzed and the LLM model to be used, if specified.
+    Specifically, it reads the project to be fuzzed and the LLM model to be
+    used, if specified.
 
     Returns:
-        tuple[str, str]: A string tuple of the project root directory and the model to be used.
+        tuple[str, str]: A string tuple of the project root directory and
+        the model to be used.
     """
     parser = argparse.ArgumentParser()
 
-    available_models = ["gpt-4.1-mini", "o4-mini", "o3-mini", "gpt-4o", "gpt-4o-mini"]
+    available_models = [
+        "gpt-4.1-mini",
+        "o4-mini",
+        "o3-mini",
+        "gpt-4o",
+        "gpt-4o-mini",
+    ]
 
     parser.add_argument(
         "project",
@@ -56,7 +65,11 @@ def parse_arguments() -> tuple[str, str]:
               harnesses are to be generated.",
     )
     model_arg = parser.add_argument(
-        "-m", "--model", default="gpt-4.1-mini", type=str, help="LLM model to be used."
+        "-m",
+        "--model",
+        default="gpt-4.1-mini",
+        type=str,
+        help="LLM model to be used.",
     )
 
     args = parser.parse_args()
@@ -66,7 +79,8 @@ def parse_arguments() -> tuple[str, str]:
 
     if model not in available_models:
         logger.warning(
-            f" Model {model} not available. Available models: {available_models}. "
+            f" Model {model} not available. Available models:"
+            f"{available_models}. "
             f"Will use the default model ({model_arg.default})"
         )
         model = model_arg.default

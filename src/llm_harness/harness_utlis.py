@@ -19,14 +19,18 @@ def get_project_info(project_path: str) -> str:
     """
 
     # hardcoding for now, will fix later
-    project_files = [f"{project_path}/dateparse.c", f"{project_path}/dateparse.h"]
+    project_files = [
+        f"{project_path}/dateparse.c",
+        f"{project_path}/dateparse.h",
+    ]
 
     file_contents = []
 
     for path in project_files:
         with open(path, "r", encoding="utf-8") as f:
             file_contents.append(
-                f"\n{'/' * 30}{' ' * 5}{os.path.basename(f.name)}{' ' * 5}{'/' * 30}\n\n"
+                f"\n{'/' * 30}{' ' * 5}{os.path.basename(f.name)}{' ' * 5}\
+                    {'/' * 30}\n\n"
             )
             file_contents.append(f.read())
 
@@ -50,7 +54,7 @@ def create_harness(model: str, project_info: str) -> str:
         with the harness' code. Make sure to write all the necessary includes
         etc. The harness will be located in a `harnesses/` subdirectory from
         the project root, so make sure the includes work appropriately.
-         
+
         Do not even wrap the code in markdown fences, e.g. ```, because it
         will be automatically written to a .c file.
 
