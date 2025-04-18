@@ -5,12 +5,11 @@ C/C++ project.
 ---
 """
 
-from dotenv import load_dotenv
-import argparse
 import sys
-import dspy
 import os
-from pathlib import Path
+import argparse
+import dspy
+from dotenv import load_dotenv
 
 
 def unique_filename(base_path: str) -> str:
@@ -18,20 +17,19 @@ def unique_filename(base_path: str) -> str:
     Creates a unique filename by appending an index when a file with the same
     name exists.
     """
-    path = Path(base_path)
-    stem = path.stem
-    suffix = path.suffix
-    parent = path.parent
+    parent = os.path.dirname(base_path)
+    filename = os.path.basename(base_path)
+    stem, suffix = os.path.splitext(filename)
 
     counter = 1
-    new_path = path
+    new_path = base_path
 
-    while new_path.exists():
-        new_name = f"{stem}_{counter}{suffix}"
-        new_path = parent / new_name
+    while os.path.exists(new_path):
+        new_filename = f"{stem}_{counter}{suffix}"
+        new_path = os.path.join(parent, new_filename)
         counter += 1
 
-    return str(new_path)
+    return new_path
 
 
 def parse_arguments() -> tuple[str, str]:
