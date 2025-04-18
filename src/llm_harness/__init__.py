@@ -7,15 +7,20 @@ C/C++ project.
 
 import os
 import argparse
-import logging
+from loguru import logger
 import dspy
 from dotenv import load_dotenv
 
 
 def unique_filename(base_path: str) -> str:
     """
-    Creates a unique filename by appending an index when a file with the same
-    name exists.
+    Creates a unique filename by appending an incrementing suffix (e.g. file_1.txt)
+
+    Args:
+        base_path (str): The intended filename, besides the suffix.
+
+    Returns:
+        str: The generated unique filename.
     """
     parent = os.path.dirname(base_path)
     filename = os.path.basename(base_path)
@@ -34,7 +39,12 @@ def unique_filename(base_path: str) -> str:
 
 def parse_arguments() -> tuple[str, str]:
     """
-    Parse the project to be fuzzed and the LLM model to be used.
+    Parses the command-line arguments.
+
+    Specifically, it reads the project to be fuzzed and the LLM model to be used, if specified.
+
+    Returns:
+        tuple[str, str]: A string tuple of the project root directory and the model to be used.
     """
     parser = argparse.ArgumentParser()
 
@@ -55,11 +65,9 @@ def parse_arguments() -> tuple[str, str]:
     model = args.model
 
     if model not in available_models:
-        logging.warning(
-            " Model %s not available. Available models: %s.\nWill use the default model (%s)",
-            model,
-            available_models,
-            model_arg.default,
+        logger.warning(
+            f" Model {model} not available. Available models: {available_models}. "
+            f"Will use the default model ({model_arg.default})"
         )
         model = model_arg.default
 
@@ -142,16 +150,16 @@ def main() -> None:
 
     project_path, model = parse_arguments()
 
-    print("Reading project and collecting information...")
+    logger.info("Reading project and collecting information...")
     project_info = get_project_info(project_path)
 
-    print("Calling LLM to generate a harness...")
+    logger.info("Calling LLM to generate a harness...")
     harness = create_harness(model=model, project_info=project_info)
 
-    print("Writing harness to project...")
+    logger.info("Writing harness to project...")
     write_harness(harness=harness, project_path=project_path)
 
-    print("All done!")
+    logger.info("All done!")
 
 
 if __name__ == "__main__":
