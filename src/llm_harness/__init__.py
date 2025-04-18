@@ -101,7 +101,7 @@ def create_harness(model: str, project_info: str) -> str:
 
     load_dotenv()  # used for OpenAI API key
 
-    lm = dspy.LM(f"openai/{model}")
+    lm = dspy.LM(f"openai/{model}", cache=False)
     dspy.configure(lm=lm)
 
     response = lm(
