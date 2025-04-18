@@ -52,7 +52,7 @@ def parse_arguments() -> tuple[str, str]:
 
     args = parser.parse_args()
 
-    path = "./assets/" + args.project
+    path = f"./assets/{args.project}"
     model = args.model
 
     if model not in available_models:
@@ -71,7 +71,7 @@ def get_project_info(project_path: str) -> str:
     """
 
     # hardcoding for now, will fix later
-    project_files = [project_path + "/dateparse.c", project_path + "/dateparse.h"]
+    project_files = [f"{project_path}/dateparse.c", f"{project_path}/dateparse.h"]
 
     file_contents = []
 
@@ -102,7 +102,7 @@ def create_harness(model: str, project_info: str) -> str:
     dspy.configure(lm=lm)
 
     response = lm(
-        """
+        f"""
         I have this C project, for which you will find the contents below.
         Write me a fuzzing harness for the dateparse function. Respond **only**
         with the harness' code. Make sure to write all the necessary includes
@@ -114,8 +114,8 @@ def create_harness(model: str, project_info: str) -> str:
 
         === Source Code ===
 
+        {project_info}
         """
-        + project_info
     )
 
     return response[0]
@@ -128,11 +128,11 @@ def write_harness(harness: str, project_path: str) -> None:
     If other harnessess with the same filename exist, a new file is created
     with an incremented index.
     """
-    directory = project_path + "/harnesses"
+    directory = f"{project_path}/harnesses"
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    harness_path = unique_filename(directory + "/fuzz.c")
+    harness_path = unique_filename(f"{directory}/fuzz.c")
 
     with open(harness_path, "w", encoding="utf-8") as f:
         f.write(harness)
