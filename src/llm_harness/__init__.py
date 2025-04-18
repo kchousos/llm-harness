@@ -78,13 +78,7 @@ def get_project_info(project_path: str) -> str:
     for path in project_files:
         with open(path, "r", encoding="utf-8") as f:
             file_contents.append(
-                "\n"
-                + "/" * 30
-                + " " * 5
-                + os.path.basename(f.name)
-                + " " * 5
-                + "/" * 30
-                + "\n\n"
+                f"\n{'/' * 30}{' ' * 5}{os.path.basename(f.name)}{' ' * 5}{'/' * 30}\n\n"
             )
             file_contents.append(f.read())
 
