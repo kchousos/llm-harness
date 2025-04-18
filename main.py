@@ -3,7 +3,8 @@ Main function utilizing the llm_harness package
 """
 
 from loguru import logger
-from llm_harness import parse_arguments, get_project_info, create_harness, write_harness
+from llm_harness.harness_utlis import get_project_info, create_harness, write_harness
+from llm_harness.utils import parse_arguments
 
 
 def main() -> None:
