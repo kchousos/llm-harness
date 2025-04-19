@@ -27,4 +27,4 @@ jobs:
     - name: Run tests
       run: |
         export PYTHONPATH=src
-        poetry run pytest -v
+        poetry run python -Im pytest -v

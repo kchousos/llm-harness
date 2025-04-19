@@ -19,7 +19,8 @@
         ".gitmodules": true,
         ".nojekyll": true,
         "LICENSE": true,
-        "poetry.lock": true
+        "poetry.lock": true,
+        ".env": true
     },
     "explorerExclude.backup": {}
 }
