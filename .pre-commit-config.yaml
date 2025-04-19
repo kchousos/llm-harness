@@ -1,0 +1,27 @@
+repos:
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.11.6
+  hooks:
+    # Run the linter.
+    - id: ruff
+    # Run the formatter.
+    - id: ruff-format
+- repo: local
+  hooks:
+    - id: pytest
+      name: pytest
+      entry: ./.venv/bin/python -Im pytest
+      language: system
+      types: [python]
+      pass_filenames: false
+      always_run: true
+- repo: local
+  hooks:
+    - id: pdoc
+      name: pdoc
+      entry: ./.venv/bin/pdoc llm_harness --docformat google --output-dir docs/
+      language: system
+      types: [python]
+      pass_filenames: false
+      always_run: true

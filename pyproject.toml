@@ -20,13 +20,14 @@ pdoc = "^15.0.2"
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
 pytest-cov = "^6.1.1"
-black = "^25.1.0"
-flake8 = "^7.2.0"
+ruff = "^0.11.6"
+pre-commit = "^4.2.0"
 
 [tool.pytest.ini_options]
 addopts = ["--import-mode=importlib"]
 
-[tool.black]
+[tool.ruff]
+# Set the maximum line length to 79.
 line-length = 79
 
 [build-system]

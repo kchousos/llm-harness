@@ -20,7 +20,8 @@
         ".nojekyll": true,
         "LICENSE": true,
         "poetry.lock": true,
-        ".env": true
+        ".env": true,
+        ".ruff_cache": true
     },
     "explorerExclude.backup": {}
 }
