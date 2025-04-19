@@ -8,10 +8,10 @@ C/C++ project.
 ### Dependencies
 
 - Python >=3.10
-- [Poetry](https://python-poetry.org/)
+- [uv](https://docs.astral.sh/uv/)
 
     ```
-    pipx install poetry
+    pipx install uv
     ```
 
 ### Installation Steps
@@ -22,8 +22,8 @@ C/C++ project.
     git clone https://github.com/kchousos/llm-harness.git
     ```
 
-2. Install dependencies:
+2. Install the project:
 
     ```
-    poetry install
+    uv sync
     ```
