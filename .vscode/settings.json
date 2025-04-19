@@ -21,7 +21,8 @@
         "LICENSE": true,
         "poetry.lock": true,
         ".env": true,
-        ".ruff_cache": true
+        ".ruff_cache": true,
+        ".pre-commit-config.yaml": true
     },
     "explorerExclude.backup": {}
 }
