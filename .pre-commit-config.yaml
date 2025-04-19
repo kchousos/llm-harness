@@ -18,6 +18,15 @@ repos:
       always_run: true
 - repo: local
   hooks:
+    - id: mypy
+      name: mypy
+      entry: ./.venv/bin/mypy src/
+      language: system
+      types: [python]
+      pass_filenames: false
+      always_run: true
+- repo: local
+  hooks:
     - id: pdoc
       name: pdoc
       entry: ./.venv/bin/pdoc llm_harness --docformat google --output-dir docs/

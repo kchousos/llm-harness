@@ -21,7 +21,8 @@
         "LICENSE": true,
         ".env": true,
         ".ruff_cache": true,
-        ".pre-commit-config.yaml": true
+        ".pre-commit-config.yaml": true,
+        ".mypy_cache": true
     },
     "explorerExclude.backup": {}
 }
