@@ -3,12 +3,7 @@ Main function utilizing the llm_harness package
 """
 
 from loguru import logger
-from llm_harness.harness_utlis import (
-    get_project_info,
-    create_harness,
-    write_harness,
-)
-from llm_harness.utils import parse_arguments
+import llm_harness as lh
 
 
 def main() -> None:
@@ -18,16 +13,18 @@ def main() -> None:
     directory.
     """
 
-    project_path, model = parse_arguments()
+    project_path, model = lh.utils.parse_arguments()
 
     logger.info("Reading project and collecting information...")
-    project_info = get_project_info(project_path)
+    project_info = lh.utils.get_project_info(project_path)
 
     logger.info("Calling LLM to generate a harness...")
-    harness = create_harness(model=model, project_info=project_info)
+    harness = lh.harness_utils.create_harness(
+        model=model, project_info=project_info
+    )
 
     logger.info("Writing harness to project...")
-    write_harness(harness=harness, project_path=project_path)
+    lh.harness_utils.write_harness(harness=harness, project_path=project_path)
 
     logger.info("All done!")
 

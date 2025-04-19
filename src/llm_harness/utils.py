@@ -1,10 +1,5 @@
 """
-_summary_
-
-_extended_summary_
-
-Returns:
-    _type_: _description_
+Collection of helper functions for I/O.
 """
 
 import os

@@ -1,10 +1,5 @@
 """
-_summary_2
-
-_extended_summary_
-
-Returns:
-    _type_: _description_
+Functions for creating harnesses with LLMs.
 """
 
 import os
