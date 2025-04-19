@@ -17,7 +17,7 @@ def main() -> None:
     project_path, model = utils.parse_arguments()
 
     logger.info("Reading project and collecting information...")
-    project_info = utils.get_project_info(project_path)
+    project_info = lh.get_project_info(project_path)
 
     logger.info("Calling LLM to generate a harness...")
     harness = lh.create_harness(model=model, project_info=project_info)
