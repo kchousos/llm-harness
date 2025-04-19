@@ -5,18 +5,23 @@ Functions for creating harnesses with LLMs.
 import os
 import dspy
 from dotenv import load_dotenv
-from llm_harness.utils import unique_filename
+from llm_harness.utils import _unique_filename
+from loguru import logger
 
 
 def get_project_info(project_path: str) -> str:
     """
     Returns the contents of all related project files.
-    """
 
-    # hardcoding for now, will fix later
+    Args:
+        project_path (str): Path to the project directory.
+
+    Returns:
+        str: Contents of project files.
+    """
     project_files = [
-        f"{project_path}/dateparse.c",
-        f"{project_path}/dateparse.h",
+        os.path.join(project_path, "dateparse.c"),
+        os.path.join(project_path, "dateparse.h"),
     ]
 
     file_contents = []
@@ -35,9 +40,15 @@ def get_project_info(project_path: str) -> str:
 def create_harness(model: str, project_info: str) -> str:
     """
     Calls the LLM to create a harness for the project.
-    """
 
-    load_dotenv()  # used for OpenAI API key
+    Args:
+        model (str): The model to be used for LLM.
+        project_info (str): The project code.
+
+    Returns:
+        str: The generated harness code.
+    """
+    load_dotenv()  # Load environment variables
 
     lm = dspy.LM(f"openai/{model}", cache=False)
     dspy.configure(lm=lm)
@@ -66,14 +77,16 @@ def write_harness(harness: str, project_path: str) -> None:
     """
     Writes the harness in the project's `harnesses/` directory.
 
-    If other harnessess with the same filename exist, a new file is created
-    with an incremented index.
+    Args:
+        harness (str): The harness code to write.
+        project_path (str): Path to the project directory.
     """
-    directory = f"{project_path}/harnesses"
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+    directory = os.path.join(project_path, "harnesses")
+    os.makedirs(directory, exist_ok=True)
+    harness_path = _unique_filename(os.path.join(directory, "fuzz.c"))
 
-    harness_path = unique_filename(f"{directory}/fuzz.c")
-
-    with open(harness_path, "w", encoding="utf-8") as f:
-        f.write(harness)
+    try:
+        with open(harness_path, "w", encoding="utf-8") as f:
+            f.write(harness)
+    except IOError as e:
+        logger.error(f"Error writing harness to {harness_path}: {e}")

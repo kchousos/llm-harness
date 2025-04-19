@@ -6,7 +6,6 @@ Automatically create harnesses for your C/C++ project using LLMs!
 `llm_harness.harness_utils`: Functions to create harnesses.
 """
 
-__all__ = ["harness_utils", "utils"]
+__all__ = ["harness_utils"]
 
 from . import harness_utils
-from . import utils

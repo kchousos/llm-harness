@@ -7,7 +7,7 @@ import argparse
 from loguru import logger
 
 
-def unique_filename(base_path: str) -> str:
+def _unique_filename(base_path: str) -> str:
     """
     Creates a unique filename by appending an incrementing suffix
     (e.g. file_1.txt)
@@ -16,7 +16,7 @@ def unique_filename(base_path: str) -> str:
         base_path (str): The intended filename, besides the suffix.
 
     Returns:
-        str: The generated unique filename.
+        str: A unique filename.
     """
     parent = os.path.dirname(base_path)
     filename = os.path.basename(base_path)
@@ -69,7 +69,7 @@ def parse_arguments() -> tuple[str, str]:
 
     args = parser.parse_args()
 
-    path = f"./assets/{args.project}"
+    path = os.path.join(".", "assets", args.project)
     model = args.model
 
     if model not in available_models:

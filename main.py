@@ -1,5 +1,5 @@
 """
-Main function utilizing the llm_harness package
+Main function utilizing the llm_harness package.
 """
 
 from loguru import logger
@@ -9,9 +9,8 @@ import llm_harness.harness_utils as lh
 
 def main() -> None:
     """
-    Gets a project's info and main source code, calls an LLM with those which
-    creates a harness for the project. The harness is written in the project's
-    directory.
+    Main entry point of the application. Collects project info, calls
+    LLM to create and write a harness for the project.
     """
 
     project_path, model = utils.parse_arguments()
