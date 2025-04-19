@@ -24,7 +24,7 @@ class Config:
     DEFAULT_MODEL = "gpt-4.1-mini"
 
     # Default files to include if none specified
-    DEFAULT_FILES = ["*.c", "*.h"]
+    DEFAULT_FILES = ["*.c", "*.h", "*.cpp", "*.hpp", "Makefile"]
 
     # Harness directory name
     HARNESS_DIR = "harnesses"
