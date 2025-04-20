@@ -12,7 +12,7 @@ repos:
   hooks:
     - id: pytest
       name: pytest
-      entry: ./.venv/bin/python -Im pytest
+      entry: ./.venv/bin/python -Im pytest --cov=llm_harness --cov-report=xml
       language: system
       types: [python]
       pass_filenames: false

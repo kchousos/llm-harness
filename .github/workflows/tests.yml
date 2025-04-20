@@ -27,7 +27,7 @@ jobs:
       run: uv sync --all-extras --dev
         
     - name: Run tests
-      run: uv run python -Im pytest -v --cov=. --cov-report=xml
+      run: uv run python -Im pytest -v --cov=llm_harness --cov-report=xml
 
     - name: Upload coverage to Coveralls
       uses: coverallsapp/github-action@v2
