@@ -5,51 +5,6 @@
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-    "files.exclude": {
-        "**/.git": false,
-        "**/.svn": false,
-        "**/.hg": false,
-        "**/.DS_Store": false,
-        "**/Thumbs.db": false,
-        ".pytest_cache": false,
-        ".github": false,
-        ".venv": false,
-        ".vscode": false,
-        "**/__pycache__": false,
-        ".gitignore": false,
-        ".gitmodules": false,
-        ".nojekyll": false,
-        "LICENSE": false,
-        ".env": false,
-        ".ruff_cache": false,
-        ".pre-commit-config.yaml": false,
-        ".mypy_cache": false
-    },
-    "explorerExclude.backup": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        ".pytest_cache": true,
-        ".github": true,
-        ".venv": true,
-        ".vscode": true,
-        "**/__pycache__": true,
-        ".gitignore": true,
-        ".gitmodules": true,
-        ".nojekyll": true,
-        "LICENSE": true,
-        ".env": true,
-        ".ruff_cache": true,
-        ".pre-commit-config.yaml": true,
-        ".mypy_cache": true
-    },
-    "python.analysis.inlayHints.pytestParameters": true,
-    "testing.coverageBarThresholds": {
-        "red": 0,
-        "yellow": 60,
-        "green": 90
-    },
-    "mypy-type-checker.importStrategy": "fromEnvironment"
+    "mypy-type-checker.importStrategy": "fromEnvironment",
+    "ruff.configurationPreference": "filesystemFirst"
 }
