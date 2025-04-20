@@ -43,6 +43,7 @@ build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 addopts = ["--import-mode=importlib"]
+filterwarnings = ["ignore::DeprecationWarning"]
 
 [tool.ruff]
 line-length = 79

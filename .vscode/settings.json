@@ -2,7 +2,7 @@
     "python.testing.pytestArgs": [
         "tests",
         "--cov=llm_harness",
-        "--cov=.",
+        // "--cov=.",
         "--cov-report=xml"
     ],
     "python.testing.unittestEnabled": false,
@@ -47,10 +47,11 @@
         ".pre-commit-config.yaml": true,
         ".mypy_cache": true
     },
-    "python.analysis.inlayHints.pytestParameters": false,
+    "python.analysis.inlayHints.pytestParameters": true,
     "testing.coverageBarThresholds": {
         "red": 0,
         "yellow": 60,
         "green": 90
-    }
+    },
+    "mypy-type-checker.importStrategy": "fromEnvironment"
 }

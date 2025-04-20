@@ -3,10 +3,12 @@
 This project uses LLMs to automatically generate fuzzing harnesses for your
 C/C++ project.
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/kchousos/llm-harness)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/kchousos/llm-harness/tests.yml?label=tests)
-![Coveralls](https://img.shields.io/coverallsCoverage/github/kchousos/llm-harness?branch=master)
-![GitHub License](https://img.shields.io/github/license/kchousos/llm-harness)
+<center>
+<img src="https://img.shields.io/github/commit-activity/w/kchousos/llm-harness" alt="GitHub commit activity">
+<img src="https://img.shields.io/github/actions/workflow/status/kchousos/llm-harness/tests.yml?label=tests" alt="GitHub Actions Workflow Status">
+<img src="https://img.shields.io/coverallsCoverage/github/kchousos/llm-harness?branch=master" alt="Coveralls">
+<img src="https://img.shields.io/github/license/kchousos/llm-harness" alt="GitHub License">
+</center>
 
 ## Installation
 

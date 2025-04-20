@@ -12,7 +12,7 @@ repos:
   hooks:
     - id: pytest
       name: pytest
-      entry: ./.venv/bin/python -Im pytest --cov=llm_harness --cov-report=xml
+      entry: ./.venv/bin/python -Im pytest
       language: system
       types: [python]
       pass_filenames: false
@@ -28,13 +28,13 @@ repos:
       pass_filenames: false
       always_run: true
       fail_fast: true
-- repo: local
-  hooks:
-    - id: pdoc
-      name: pdoc
-      entry: ./.venv/bin/pdoc llm_harness --docformat google --output-dir docs/
-      language: system
-      types: [python]
-      pass_filenames: false
-      always_run: true
-      fail_fast: true
+# - repo: local
+#   hooks:
+#     - id: pdoc
+#       name: pdoc
+#       entry: ./.venv/bin/pdoc llm_harness --docformat google --output-dir docs/
+#       language: system
+#       types: [python]
+#       pass_filenames: false
+#       always_run: true
+#       fail_fast: true
