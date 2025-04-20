@@ -34,22 +34,22 @@ jobs:
     - name: Run tests
       run: uv run python -Im pytest -v --cov=llm_harness --cov-report=xml --junitxml=test-results.xml
 
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: success() || failure()
+      with:
+        name: Pytest Results
+        path: test-results.xml
+        reporter: java-junit
+
     - name: Upload coverage to Coveralls
       uses: coverallsapp/github-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: test-results
-        path: test-results.xml
-
-    - name: Test Report
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-        name: Pytest Results
-        path: test-results.xml
-        reporter: java-junit
+    # - name: Upload test results
+    #   uses: actions/upload-artifact@v4
+    #   if: always()
+    #   with:
+    #     name: test-results
+    #     path: test-results.xml
