@@ -9,10 +9,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
-    
+    - uses: actions/checkout@v4
+
     - name: Install uv
       uses: astral-sh/setup-uv@v5
       with:
@@ -22,14 +22,20 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version-file: "pyproject.toml"
-        
+
     - name: Install the project
       run: uv sync --all-extras --dev
-        
+
     - name: Run tests
-      run: uv run python -Im pytest -v --cov=llm_harness --cov-report=xml
+      run: uv run python -Im pytest -v --cov=llm_harness --cov-report=xml --junitxml=test-results.xml
 
     - name: Upload coverage to Coveralls
       uses: coverallsapp/github-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: test-results.xml
