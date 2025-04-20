@@ -16,7 +16,6 @@ repos:
       language: system
       types: [python]
       pass_filenames: false
-      always_run: true
       fail_fast: true
 - repo: local
   hooks:
@@ -26,5 +25,4 @@ repos:
       language: system
       types: [python]
       pass_filenames: false
-      always_run: true
       fail_fast: true
