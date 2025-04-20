@@ -1,11 +1,10 @@
 """
-<center>
-Automatically create harnesses for your C/C++ project using LLMs!
-</center>
-
-`llm_harness.harness_utils`: Functions to create harnesses.
+This package provides tools to analyze C/C++ projects and automatically
+generate fuzzing harnesses using Large Language Models.
 """
 
-__all__ = ["harness_utils"]
+from llm_harness.core.analyzer import ProjectAnalyzer
+from llm_harness.core.generator import HarnessGenerator
+from llm_harness.io.file_manager import FileManager
 
-from . import harness_utils
+__all__ = ["ProjectAnalyzer", "HarnessGenerator", "FileManager"]

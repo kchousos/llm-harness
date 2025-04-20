@@ -45,5 +45,4 @@ build-backend = "hatchling.build"
 addopts = ["--import-mode=importlib"]
 
 [tool.ruff]
-# Set the maximum line length to 79.
 line-length = 79

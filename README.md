@@ -3,6 +3,8 @@
 This project uses LLMs to automatically generate fuzzing harnesses for your
 C/C++ project.
 
+[![Coverage Status](https://coveralls.io/repos/github/kchousos/llm-harness/badge.svg?branch=master)](https://coveralls.io/github/kchousos/llm-harness?branch=master)
+
 ## Installation
 
 ### Dependencies
