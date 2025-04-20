@@ -37,12 +37,16 @@ include = ["src/llm_harness"]
 [tool.hatch.build.targets.wheel.sources]
 "src/llm_harness" = "llm_harness"
 
+[tool.hatch.build.targets.wheel.shared-data]
+"llm_harness/py.typed" = "llm_harness/py.typed"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 addopts = ["--import-mode=importlib"]
+filterwarnings = ["ignore::DeprecationWarning"]
 
 [tool.ruff]
 line-length = 79

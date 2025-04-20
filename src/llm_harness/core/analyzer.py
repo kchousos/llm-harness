@@ -35,8 +35,12 @@ class ProjectAnalyzer:
         Returns:
             ProjectInfo: Information about the project.
         """
+        files: list[ProjectFile] = []
+
         project_files = self._find_project_files()
-        files = []
+        if not project_files:
+            logger.error("No project files found!")
+            return ProjectInfo(files=files)
 
         for file_path in project_files:
             try:
@@ -52,7 +56,7 @@ class ProjectAnalyzer:
                 logger.error(f"Error reading file {file_path}: {e}")
 
         if not files:
-            logger.warning("No project files found!")
+            logger.error("No project files found!")
 
         return ProjectInfo(files=files)
 
