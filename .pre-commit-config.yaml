@@ -10,16 +10,6 @@ repos:
     - id: ruff-format
 - repo: local
   hooks:
-    - id: pytest
-      name: pytest
-      entry: ./.venv/bin/python -Im pytest
-      language: system
-      types: [python]
-      pass_filenames: false
-      always_run: true
-      fail_fast: true
-- repo: local
-  hooks:
     - id: mypy
       name: mypy
       entry: ./.venv/bin/mypy src/
@@ -28,13 +18,13 @@ repos:
       pass_filenames: false
       always_run: true
       fail_fast: true
-# - repo: local
-#   hooks:
-#     - id: pdoc
-#       name: pdoc
-#       entry: ./.venv/bin/pdoc llm_harness --docformat google --output-dir docs/
-#       language: system
-#       types: [python]
-#       pass_filenames: false
-#       always_run: true
-#       fail_fast: true
+- repo: local
+  hooks:
+    - id: pytest
+      name: pytest
+      entry: ./.venv/bin/python -Im pytest
+      language: system
+      types: [python]
+      pass_filenames: false
+      always_run: true
+      fail_fast: true
