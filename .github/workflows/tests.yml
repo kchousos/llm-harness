@@ -33,7 +33,7 @@ jobs:
     - name: Run tests
       run: uv run python -Im pytest -v --cov=llm_harness --cov-report=xml --junitxml=test-results.xml
 
-    - name: Publish Test Resultsejunit
+    - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
       with:
