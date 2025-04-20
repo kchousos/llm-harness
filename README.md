@@ -1,17 +1,17 @@
-# LLM-Harness
+<h1 align="center">LLM-Harness</h1>
 
-<center>
-<h3>🚧⚠️ Under Construction ⚠️🚧</h3>
-</center>
+<div align="center">
 
-This project uses LLMs to automatically generate fuzzing harnesses for your
+Use LLMs to automatically generate fuzzing harnesses for your
 C/C++ project.
-
+    
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 ![python](https://img.shields.io/badge/Python-%3E%3D%0A3.10-3776AB.svg?logo=python&logoColor=white)
 ![GitHub License](https://img.shields.io/github/license/kchousos/llm-harness)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/kchousos/llm-harness/tests.yml?label=tests)
 ![Coveralls](https://img.shields.io/coverallsCoverage/github/kchousos/llm-harness?branch=master)
+
+</div>
 
 ## Installation
 
