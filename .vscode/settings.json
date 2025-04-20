@@ -1,9 +1,7 @@
 {
     "python.testing.pytestArgs": [
         "tests",
-        "--cov=llm_harness",
-        // "--cov=.",
-        "--cov-report=xml"
+        "--cov=llm_harness"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
