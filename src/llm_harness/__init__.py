@@ -1,6 +1,4 @@
 """
-Automatically create harnesses for your C/C++ project using LLMs!
-
 This package provides tools to analyze C/C++ projects and automatically
 generate fuzzing harnesses using Large Language Models.
 """
