@@ -16,7 +16,7 @@ class ProjectFile:
 
 
 @dataclass
-class ProjectInfo:
+class ProjectFiles:
     """Contains information about a project."""
 
     files: List[ProjectFile]
@@ -31,9 +31,7 @@ class ProjectInfo:
         file_contents = []
 
         for file in self.files:
-            file_contents.append(
-                f"\n{'/' * 30}{' ' * 5}{file.name}{' ' * 5}{'/' * 30}\n\n"
-            )
+            file_contents.append(f"\n>>>> {file.name}\n")
             file_contents.append(file.content)
 
         return "".join(file_contents)

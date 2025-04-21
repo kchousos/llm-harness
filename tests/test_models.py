@@ -1,4 +1,4 @@
-from llm_harness.models.project import ProjectFile, ProjectInfo
+from llm_harness.models.project import ProjectFile, ProjectFiles
 
 
 class TestProjectModels:
@@ -18,7 +18,7 @@ class TestProjectModels:
 
     def test_project_info_empty(self):
         """Test ProjectInfo model with no files."""
-        project_info = ProjectInfo(files=[])
+        project_info = ProjectFiles(files=[])
 
         assert len(project_info.files) == 0
         assert project_info.get_concatenated_content() == ""
@@ -30,7 +30,7 @@ class TestProjectModels:
             name="file.c",
             content="int main() { return 0; }",
         )
-        project_info = ProjectInfo(files=[file])
+        project_info = ProjectFiles(files=[file])
 
         assert len(project_info.files) == 1
         concatenated = project_info.get_concatenated_content()
@@ -49,7 +49,7 @@ class TestProjectModels:
         file2 = ProjectFile(
             path="/path/to/file2.h", name="file2.h", content="#define VALUE 42"
         )
-        project_info = ProjectInfo(files=[file1, file2])
+        project_info = ProjectFiles(files=[file1, file2])
 
         assert len(project_info.files) == 2
         concatenated = project_info.get_concatenated_content()
