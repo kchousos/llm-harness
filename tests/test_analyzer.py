@@ -1,7 +1,7 @@
 import pytest
 from unittest import mock
 from llm_harness.core.analyzer import ProjectAnalyzer
-from llm_harness.models.project import ProjectFiles
+from llm_harness.models.project import ProjectInfo
 from llm_harness.config import Config
 
 
@@ -70,7 +70,7 @@ class TestProjectAnalyzer:
         project_info = analyzer.collect_project_info()
 
         # Assertions
-        assert isinstance(project_info, ProjectFiles)
+        assert isinstance(project_info, ProjectInfo)
         print(project_info.files)
         assert len(project_info.files) == 4
 
@@ -95,7 +95,7 @@ class TestProjectAnalyzer:
         project_info = analyzer.collect_project_info()
 
         # Assertions
-        assert isinstance(project_info, ProjectFiles)
+        assert isinstance(project_info, ProjectInfo)
         assert len(project_info.files) == 0
 
     def test_collect_project_info_read_error(self, mock_glob):
@@ -111,5 +111,5 @@ class TestProjectAnalyzer:
             project_info = analyzer.collect_project_info()
 
             # Assertions - should return empty ProjectInfo
-            assert isinstance(project_info, ProjectFiles)
+            assert isinstance(project_info, ProjectInfo)
             assert len(project_info.files) == 0

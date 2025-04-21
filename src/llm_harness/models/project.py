@@ -16,7 +16,7 @@ class ProjectFile:
 
 
 @dataclass
-class ProjectFiles:
+class ProjectInfo:
     """Contains information about a project."""
 
     files: List[ProjectFile]

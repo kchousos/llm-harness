@@ -4,7 +4,7 @@ Harness generation functionality.
 
 import dspy
 from loguru import logger
-from llm_harness.models.project import ProjectFiles
+from llm_harness.models.project import ProjectInfo
 from llm_harness.config import Config
 
 
@@ -29,7 +29,7 @@ class HarnessGenerator:
                 "No API key found. Make sure to set OPENAI_API_KEY in .env file."
             )
 
-    def create_harness(self, project_info: ProjectFiles) -> str:
+    def create_harness(self, project_info: ProjectInfo) -> str:
         """
         Calls the LLM to create a harness for the project.
 

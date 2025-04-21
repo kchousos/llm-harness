@@ -6,7 +6,7 @@ import os
 import glob
 from typing import List, Optional
 from loguru import logger
-from llm_harness.models.project import ProjectFile, ProjectFiles
+from llm_harness.models.project import ProjectFile, ProjectInfo
 from llm_harness.config import Config
 
 
@@ -28,7 +28,7 @@ class ProjectAnalyzer:
         self.project_path = project_path
         self.file_patterns = file_patterns or Config.DEFAULT_FILES
 
-    def collect_project_info(self) -> ProjectFiles:
+    def collect_project_info(self) -> ProjectInfo:
         """
         Collects information about the project by reading files.
 
@@ -40,7 +40,7 @@ class ProjectAnalyzer:
         project_files = self._find_project_files()
         if not project_files:
             logger.error("No project files found!")
-            return ProjectFiles(files=files)
+            return ProjectInfo(files=files)
 
         for file_path in project_files:
             try:
@@ -58,7 +58,7 @@ class ProjectAnalyzer:
         if not files:
             logger.error("No project files found!")
 
-        return ProjectFiles(files=files)
+        return ProjectInfo(files=files)
 
     def _find_project_files(self) -> List[str]:
         """

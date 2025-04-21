@@ -1,7 +1,7 @@
 import pytest
 from unittest import mock
 from llm_harness.core.generator import HarnessGenerator
-from llm_harness.models.project import ProjectFiles, ProjectFile
+from llm_harness.models.project import ProjectInfo, ProjectFile
 
 
 class TestHarnessGenerator:
@@ -32,7 +32,7 @@ class TestHarnessGenerator:
             name="file.c",
             content="int main() { return 0; }",
         )
-        project_info = ProjectFiles(files=[project_file])
+        project_info = ProjectInfo(files=[project_file])
 
         # Create generator and call method
         generator = HarnessGenerator("gpt-4o")
@@ -58,7 +58,7 @@ class TestHarnessGenerator:
             name="file.c",
             content="int main() { return 0; }",
         )
-        project_info = ProjectFiles(files=[project_file])
+        project_info = ProjectInfo(files=[project_file])
 
         # Create generator and call method - should raise exception
         generator = HarnessGenerator("gpt-4o")
