@@ -6,3 +6,6 @@
 	path = assets/vulnerable_parser
 	url = https://github.com/kchousos/vulnerable_parser
     ignore = untracked
+[submodule "assets/tinyxml2"]
+	path = assets/tinyxml2
+	url = https://github.com/leethomason/tinyxml2
