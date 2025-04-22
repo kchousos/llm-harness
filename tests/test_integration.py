@@ -86,31 +86,23 @@ def test_end_to_end_flow(
     # Mock API key
     mock_load_env.return_value = "test-api-key"
 
-    # Mock FileManager._create_unique_filename
-    with mock.patch.object(
-        FileManager,
-        "_create_unique_filename",
-        return_value=os.path.join(project_path, "harnesses", "fuzz.c"),
-    ):
-        # Mock file write
-        with mock.patch("builtins.open", mock.mock_open()) as mock_file:
-            # Create components and run flow
-            analyzer = ProjectAnalyzer(project_path)
-            project_info = analyzer.collect_project_info()
+    # Mock file write
+    with mock.patch("builtins.open", mock.mock_open()) as mock_file:
+        # Create components and run flow
+        analyzer = ProjectAnalyzer(project_path)
+        project_info = analyzer.collect_project_info()
 
-            generator = HarnessGenerator("gpt-4o")
-            harness = generator.create_harness(project_info)
+        generator = HarnessGenerator("gpt-4o")
+        harness = generator.create_harness(project_info)
 
-            file_manager = FileManager(project_path)
-            result_path = file_manager.write_harness(harness)
+        file_manager = FileManager(project_path)
+        result_path = file_manager.write_harness(harness)
 
-            # Assertions
-            assert len(project_info.files) == 2
-            assert harness == "Generated harness code"
-            assert result_path == os.path.join(
-                project_path, "harnesses", "fuzz.c"
-            )
-            mock_file().write.assert_called_once_with("Generated harness code")
-            mock_makedirs.assert_called_once_with(
-                os.path.join(project_path, "harnesses"), exist_ok=True
-            )
+        # Assertions
+        assert len(project_info.files) == 2
+        assert harness == "Generated harness code"
+        assert result_path == os.path.join(project_path, ".", "harness.c")
+        mock_file().write.assert_called_once_with("Generated harness code")
+        mock_makedirs.assert_called_once_with(
+            os.path.join(project_path, "."), exist_ok=True
+        )
