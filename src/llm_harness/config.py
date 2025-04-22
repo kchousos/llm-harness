@@ -54,7 +54,10 @@ class Config:
 
     # Default C compilation options
     CC = "clang"
-    CFLAGS = "-g -fsanitize=fuzzer,address,undefined"  # needed for fuzzing
+    CFLAGS = [
+        "-g",
+        "-fsanitize=fuzzer,address,undefined",
+    ]  # needed for fuzzing
     EXECUTABLE_FILENAME = "harness"
 
     @staticmethod
