@@ -23,13 +23,18 @@ from loguru import logger
 from llm_harness.cli import parse_arguments
 from llm_harness.core.analyzer import ProjectAnalyzer
 from llm_harness.core.generator import HarnessGenerator
+from llm_harness.core.builder import HarnessBuilder
+from llm_harness.core.evaluator import HarnessEvaluator
 from llm_harness.io.file_manager import FileManager
 
 
-def main() -> None:
+def main() -> bool:
     """
     Main entry point of the application. Collects project info, calls
     LLM to create and write a harness for the project.
+
+    Returns:
+        bool: Whether the harness is up to par to be merged to the project.
     """
     args = parse_arguments()
     project_path, model = args.project_path, args.model
@@ -46,7 +51,16 @@ def main() -> None:
     file_manager = FileManager(project_path)
     file_manager.write_harness(harness)
 
+    logger.info("Building harness...")
+    builder = HarnessBuilder(project_path)
+    builder.build_harness()
+
+    logger.info("Evaluating harness...")
+    evaluator = HarnessEvaluator(project_path)
+    accepted = evaluator.evaulate_harness()
+
     logger.info("All done!")
+    return accepted
 
 
 if __name__ == "__main__":

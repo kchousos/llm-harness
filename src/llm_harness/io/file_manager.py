@@ -56,7 +56,7 @@ class FileManager:
         os.makedirs(self.harness_dir, exist_ok=True)
 
         if not filename:
-            filename = Config.DEFAULT_HARNESS_FILENAME
+            filename = Config.HARNESS_FILENAME
 
         harness_path = os.path.join(self.harness_dir, filename)
 

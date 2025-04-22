@@ -35,6 +35,8 @@ class Config:
         "o3-mini",
         "gpt-4o",
         "gpt-4o-mini",
+        "gpt-4.1",
+        "gpt-4.1-mini",
     ]
 
     # Default model if none provided
@@ -48,7 +50,15 @@ class Config:
     HARNESS_DIR = "."
 
     # Harness default filename
-    DEFAULT_HARNESS_FILENAME = "harness.c"
+    HARNESS_FILENAME = "harness.c"
+
+    # Default C compilation options
+    CC = "clang"
+    CFLAGS = [
+        "-g",
+        "-fsanitize=fuzzer,address,undefined",
+    ]  # needed for fuzzing
+    EXECUTABLE_FILENAME = "harness"
 
     @staticmethod
     def load_env():
