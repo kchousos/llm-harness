@@ -59,37 +59,12 @@ class FileManager:
             filename = Config.DEFAULT_HARNESS_FILENAME
 
         harness_path = os.path.join(self.harness_dir, filename)
-        unique_path = self._create_unique_filename(harness_path)
 
         try:
-            with open(unique_path, "w", encoding="utf-8") as f:
+            with open(harness_path, "w", encoding="utf-8") as f:
                 f.write(harness)
-            logger.info(f"Harness written to {unique_path}")
-            return unique_path
+            logger.info(f"Harness written to {harness_path}")
+            return harness_path
         except IOError as e:
-            logger.error(f"Error writing harness to {unique_path}: {e}")
+            logger.error(f"Error writing harness to {harness_path}: {e}")
             raise
-
-    def _create_unique_filename(self, base_path: str) -> str:
-        """
-        Creates a unique filename by appending an incrementing suffix.
-
-        Args:
-            base_path (str): The intended filename.
-
-        Returns:
-            str: A unique filename.
-        """
-        parent = os.path.dirname(base_path)
-        filename = os.path.basename(base_path)
-        stem, suffix = os.path.splitext(filename)
-
-        counter = 1
-        new_path = base_path
-
-        while os.path.exists(new_path):
-            new_filename = f"{stem}_{counter}{suffix}"
-            new_path = os.path.join(parent, new_filename)
-            counter += 1
-
-        return new_path

@@ -44,10 +44,11 @@ class Config:
     DEFAULT_FILES = ["*.c", "*.h", "*.cpp", "*.hpp", "Makefile"]
 
     # Harness directory name
-    HARNESS_DIR = "harnesses"
+    # Defaults to project's root directory
+    HARNESS_DIR = "."
 
     # Harness default filename
-    DEFAULT_HARNESS_FILENAME = "fuzz.c"
+    DEFAULT_HARNESS_FILENAME = "harness.c"
 
     @staticmethod
     def load_env():
