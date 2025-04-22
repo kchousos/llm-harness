@@ -56,15 +56,14 @@ class HarnessBuilder:
         Returns:
             str: Build output including success or error message.
         """
-        # Collect additional source files recursively
-
         if not harness_filename:
             harness_filename = Config().HARNESS_FILENAME
 
+        # Collect source files recursively
         source_files = [harness_filename]
         for _, _, files in os.walk(self.project_path):
             for f in files:
-                if f != harness_filename and f.endswith("c"):
+                if f != harness_filename and f.endswith(".c"):
                     source_files.append(f)
 
         compilation_command = [
@@ -75,8 +74,8 @@ class HarnessBuilder:
             self.executable,
         ]
 
+        logger.info(f"Starting compilation of harness: {harness_filename}")
         try:
-            logger.info(f"Starting compilation of harness: {harness_filename}")
             completed_process = subprocess.run(
                 compilation_command,
                 check=True,
