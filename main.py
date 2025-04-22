@@ -23,6 +23,7 @@ from loguru import logger
 from llm_harness.cli import parse_arguments
 from llm_harness.core.analyzer import ProjectAnalyzer
 from llm_harness.core.generator import HarnessGenerator
+from llm_harness.core.builder import HarnessBuilder
 from llm_harness.io.file_manager import FileManager
 
 
@@ -45,6 +46,10 @@ def main() -> None:
     logger.info("Writing harness to project...")
     file_manager = FileManager(project_path)
     file_manager.write_harness(harness)
+
+    logger.info("Building harness...")
+    builder = HarnessBuilder(project_path)
+    builder.build_harness()
 
     logger.info("All done!")
 
