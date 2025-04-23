@@ -47,7 +47,7 @@ class Config:
 
     # Harness directory name
     # Defaults to project's root directory
-    HARNESS_DIR = "."
+    HARNESS_DIR = "harnesses"
 
     # Harness default filename
     HARNESS_FILENAME = "harness.c"

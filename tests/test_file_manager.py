@@ -34,7 +34,7 @@ class TestFileManager:
         )
         assert (
             Path(manager.harness_dir).resolve()
-            == Path("/path/to/project/").resolve()
+            == Path("/path/to/project/harnesses").resolve()
         )
 
     @mock.patch("os.makedirs")
@@ -47,13 +47,13 @@ class TestFileManager:
         # Assertions
         assert (
             Path(result).resolve()
-            == Path("/path/to/project/harness.c").resolve()
+            == Path("/path/to/project/harnesses/harness.c").resolve()
         )
         mock_makedirs.assert_called_once_with(
-            "/path/to/project/.", exist_ok=True
+            "/path/to/project/harnesses", exist_ok=True
         )
         mock_file.assert_called_once_with(
-            "/path/to/project/./harness.c", "w", encoding="utf-8"
+            "/path/to/project/harnesses/harness.c", "w", encoding="utf-8"
         )
         mock_file().write.assert_called_once_with("harness content")
 
@@ -65,12 +65,12 @@ class TestFileManager:
         result = manager.write_harness("harness content", "custom.c")
 
         # Assertions
-        assert result == "/path/to/project/./custom.c"
+        assert result == "/path/to/project/harnesses/custom.c"
         mock_makedirs.assert_called_once_with(
-            os.path.join("/path/to/project", "."), exist_ok=True
+            os.path.join("/path/to/project", "harnesses"), exist_ok=True
         )
         mock_file.assert_called_once_with(
-            "/path/to/project/./custom.c", "w", encoding="utf-8"
+            "/path/to/project/harnesses/custom.c", "w", encoding="utf-8"
         )
         mock_file().write.assert_called_once_with("harness content")
 

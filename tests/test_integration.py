@@ -101,8 +101,10 @@ def test_end_to_end_flow(
         # Assertions
         assert len(project_info.files) == 2
         assert harness == "Generated harness code"
-        assert result_path == os.path.join(project_path, ".", "harness.c")
+        assert result_path == os.path.join(
+            project_path, "harnesses", "harness.c"
+        )
         mock_file().write.assert_called_once_with("Generated harness code")
         mock_makedirs.assert_called_once_with(
-            os.path.join(project_path, "."), exist_ok=True
+            os.path.join(project_path, "harnesses"), exist_ok=True
         )
