@@ -79,7 +79,7 @@ class HarnessGenerator:
                 """
             )
 
-            return response[0]
+            return str(response[0])
         except Exception as e:
             logger.error(f"Error creating harness: {e}")
             raise

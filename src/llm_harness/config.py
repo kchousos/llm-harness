@@ -61,7 +61,7 @@ class Config:
     EXECUTABLE_FILENAME = "harness"
 
     @staticmethod
-    def load_env():
+    def load_env() -> str | None:
         """Load environment variables from .env file."""
         load_dotenv()
         return os.environ.get("OPENAI_API_KEY")
