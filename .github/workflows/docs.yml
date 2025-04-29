@@ -47,6 +47,6 @@ jobs:
       uses: actions/deploy-pages@v4
       with:
         publish-dir: docs
-        publish-branch: gh-pages
+        publish-branch: master
         publish-token: ${{ secrets.GITHUB_TOKEN }}
         destination-dir: docs
