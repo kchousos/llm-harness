@@ -1,6 +1,6 @@
 [project]
 name = "llm-harness"
-version = "0.4.0"
+version = "0.4.1"
 description = "LLM-generated harnesses for your C/C++ project."
 authors = [{ name = "Konstantinos Chousos", email = "kon.chousos@gmail.com" }]
 requires-python = ">=3.10,<3.13"
@@ -27,6 +27,20 @@ default-groups = ["docs", "dev"]
 [[tool.mypy.overrides]]
 module = "dspy.*"
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "llm_harness.*"
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+no_implicit_reexport = true
+strict_equality = true
+strict_optional = true
+warn_return_any = true
+warn_unused_ignores = true
 
 [tool.hatch.build.targets.sdist]
 include = ["src/llm_harness"]

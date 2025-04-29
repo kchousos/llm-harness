@@ -16,7 +16,13 @@ alt="GitHub License" /> <img
 src="https://img.shields.io/github/actions/workflow/status/kchousos/llm-harness/tests.yml?label=tests"
 alt="GitHub Actions Workflow Status" /> <img
 src="https://img.shields.io/coverallsCoverage/github/kchousos/llm-harness?branch=master"
-alt="Coveralls" /></p>
+alt="Coveralls" />
+<a href="https://docs.astral.sh/ruff/">
+<img src="https://img.shields.io/badge/code%20formatter-ruff-d7ff64"
+alt="code formatter: ruff" /></a> 
+<a href="http://mypy-lang.org/"><img
+src="https://img.shields.io/badge/type%20check-mypy-blue"
+alt="type check: mypy" /></a></p>
 
 </div>
 

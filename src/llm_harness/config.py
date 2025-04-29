@@ -47,7 +47,7 @@ class Config:
 
     # Harness directory name
     # Defaults to project's root directory
-    HARNESS_DIR = "."
+    HARNESS_DIR = "harnesses"
 
     # Harness default filename
     HARNESS_FILENAME = "harness.c"
@@ -61,7 +61,7 @@ class Config:
     EXECUTABLE_FILENAME = "harness"
 
     @staticmethod
-    def load_env():
+    def load_env() -> str | None:
         """Load environment variables from .env file."""
         load_dotenv()
         return os.environ.get("OPENAI_API_KEY")

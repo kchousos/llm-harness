@@ -1,0 +1,52 @@
+name: Docs
+
+on:
+  push:
+    branches: [ master ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version-file: "pyproject.toml"
+
+    - name: Install the project
+      run: uv sync --all-extras --group docs
+
+    - name: Create docs
+      run: uv run pdoc llm_harness --docformat google --output-dir docs/
+
+    - name: Upload docs artifacts
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: docs
+    
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4
+      with:
+        publish-dir: docs
+        publish-branch: gh-pages
+        publish-token: ${{ secrets.GITHUB_TOKEN }}
+        destination-dir: docs

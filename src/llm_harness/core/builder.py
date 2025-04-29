@@ -59,17 +59,22 @@ class HarnessBuilder:
         if not harness_filename:
             harness_filename = Config().HARNESS_FILENAME
 
+        harness_filename = os.path.join(self.harness_dir, harness_filename)
+
         # Collect source files recursively
         source_files = [harness_filename]
         for _, _, files in os.walk(self.project_path):
             for f in files:
-                if f != harness_filename and f.endswith(".c"):
+                if f != os.path.basename(harness_filename) and f.endswith(
+                    ".c"
+                ):
                     source_files.append(f)
 
         compilation_command = [
             self.cc,
             *self.cflags,
             *source_files,
+            "-I.",
             "-o",
             self.executable,
         ]
