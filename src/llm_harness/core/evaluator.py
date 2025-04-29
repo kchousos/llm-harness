@@ -20,6 +20,8 @@ Runs and evaluates the generated harness.
 """
 
 import subprocess
+import time
+import os
 from loguru import logger
 from llm_harness.config import Config
 
@@ -39,6 +41,17 @@ class HarnessEvaluator:
         self.project_path = project_path
         self.executable = Config().EXECUTABLE_FILENAME
 
+    def _list_crash_files(self) -> set[str]:
+        """
+        List all crash-* files in the given directory.
+
+        Args:
+            directory (str): The directory to search for crash files.
+        """
+        return {
+            f for f in os.listdir(self.project_path) if f.startswith("crash-")
+        }
+
     def evaulate_harness(self) -> bool:
         """
         Runs and evaluates the LLM-generated harness.
@@ -47,12 +60,46 @@ class HarnessEvaluator:
             bool: Returns whether the harness "passes" the evaluation.
         """
         execution_command = f"./{self.executable}"
+
+        before = self._list_crash_files()
+
         logger.info("Starting execution of harness...")
-        subprocess.run(
-            execution_command,
-            check=False,
-            text=True,
-            cwd=self.project_path,
-        )
+
+        start_time = time.time()
+
+        try:
+            subprocess.run(
+                execution_command,
+                check=False,
+                text=True,
+                cwd=self.project_path,
+                timeout=Config().EXECUTION_TIMEOUT,
+            )
+            end_time = time.time()
+        except subprocess.TimeoutExpired:
+            logger.error(
+                f"Execution timed out after {Config().EXECUTION_TIMEOUT} seconds."
+            )
+            return False
+
+        runtime = end_time - start_time
+        logger.info(f"Harness execution completed in {runtime:.2f} seconds.")
+
+        after = self._list_crash_files()
+        testcases = after - before
+
+        # Check if new testcases were created
+        if len(testcases) == 0:
+            logger.error("No new testcases were generated.")
+            return False
+        else:
+            logger.info(
+                f"New testcases created ({len(testcases)}): {testcases}"
+            )
+
+        # Minimum runtime
+        if runtime / 60 < Config().MIN_EXECUTION_TIME and testcases is None:
+            logger.error("Harness does not execute correctly.")
+            return False
 
         return True

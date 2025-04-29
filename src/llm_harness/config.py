@@ -60,6 +60,10 @@ class Config:
     ]  # needed for fuzzing
     EXECUTABLE_FILENAME = "harness"
 
+    MIN_EXECUTION_TIME = 5  # minutes
+
+    EXECUTION_TIMEOUT = 20 * 60  # seconds
+
     @staticmethod
     def load_env() -> str | None:
         """Load environment variables from .env file."""

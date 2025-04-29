@@ -59,8 +59,12 @@ def main() -> bool:
     evaluator = HarnessEvaluator(project_path)
     accepted = evaluator.evaulate_harness()
 
+    if accepted is False:
+        logger.error("The generated harness is not up to par.")
+        return False
+
     logger.info("All done!")
-    return accepted
+    return True
 
 
 if __name__ == "__main__":
