@@ -135,7 +135,7 @@
 </span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a>
 </span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>    <span class="c1"># Harness directory name</span>
 </span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a>    <span class="c1"># Defaults to project&#39;s root directory</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a>    <span class="n">HARNESS_DIR</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a>    <span class="n">HARNESS_DIR</span> <span class="o">=</span> <span class="s2">&quot;harnesses&quot;</span>
 </span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a>
 </span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>    <span class="c1"># Harness default filename</span>
 </span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a>    <span class="n">HARNESS_FILENAME</span> <span class="o">=</span> <span class="s2">&quot;harness.c&quot;</span>
@@ -149,7 +149,7 @@
 </span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>    <span class="n">EXECUTABLE_FILENAME</span> <span class="o">=</span> <span class="s2">&quot;harness&quot;</span>
 </span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>
 </span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a>    <span class="nd">@staticmethod</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">():</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Load environment variables from .env file.&quot;&quot;&quot;</span>
 </span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a>        <span class="n">load_dotenv</span><span class="p">()</span>
 </span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
@@ -192,7 +192,7 @@
 </span><span id="Config-48"><a href="#Config-48"><span class="linenos">48</span></a>
 </span><span id="Config-49"><a href="#Config-49"><span class="linenos">49</span></a>    <span class="c1"># Harness directory name</span>
 </span><span id="Config-50"><a href="#Config-50"><span class="linenos">50</span></a>    <span class="c1"># Defaults to project&#39;s root directory</span>
-</span><span id="Config-51"><a href="#Config-51"><span class="linenos">51</span></a>    <span class="n">HARNESS_DIR</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+</span><span id="Config-51"><a href="#Config-51"><span class="linenos">51</span></a>    <span class="n">HARNESS_DIR</span> <span class="o">=</span> <span class="s2">&quot;harnesses&quot;</span>
 </span><span id="Config-52"><a href="#Config-52"><span class="linenos">52</span></a>
 </span><span id="Config-53"><a href="#Config-53"><span class="linenos">53</span></a>    <span class="c1"># Harness default filename</span>
 </span><span id="Config-54"><a href="#Config-54"><span class="linenos">54</span></a>    <span class="n">HARNESS_FILENAME</span> <span class="o">=</span> <span class="s2">&quot;harness.c&quot;</span>
@@ -206,7 +206,7 @@
 </span><span id="Config-62"><a href="#Config-62"><span class="linenos">62</span></a>    <span class="n">EXECUTABLE_FILENAME</span> <span class="o">=</span> <span class="s2">&quot;harness&quot;</span>
 </span><span id="Config-63"><a href="#Config-63"><span class="linenos">63</span></a>
 </span><span id="Config-64"><a href="#Config-64"><span class="linenos">64</span></a>    <span class="nd">@staticmethod</span>
-</span><span id="Config-65"><a href="#Config-65"><span class="linenos">65</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">():</span>
+</span><span id="Config-65"><a href="#Config-65"><span class="linenos">65</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="Config-66"><a href="#Config-66"><span class="linenos">66</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Load environment variables from .env file.&quot;&quot;&quot;</span>
 </span><span id="Config-67"><a href="#Config-67"><span class="linenos">67</span></a>        <span class="n">load_dotenv</span><span class="p">()</span>
 </span><span id="Config-68"><a href="#Config-68"><span class="linenos">68</span></a>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
@@ -256,7 +256,7 @@
                             <div id="Config.HARNESS_DIR" class="classattr">
                                 <div class="attr variable">
             <span class="name">HARNESS_DIR</span>        =
-<span class="default_value">&#39;.&#39;</span>
+<span class="default_value">&#39;harnesses&#39;</span>
 
         
     </div>
@@ -319,14 +319,14 @@
                     <div class="decorator decorator-staticmethod">@staticmethod</div>
 
         <span class="def">def</span>
-        <span class="name">load_env</span><span class="signature pdoc-code condensed">(<span class="return-annotation">):</span></span>
+        <span class="name">load_env</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>:</span></span>
 
                 <label class="view-source-button" for="Config.load_env-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#Config.load_env"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="Config.load_env-64"><a href="#Config.load_env-64"><span class="linenos">64</span></a>    <span class="nd">@staticmethod</span>
-</span><span id="Config.load_env-65"><a href="#Config.load_env-65"><span class="linenos">65</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">():</span>
+</span><span id="Config.load_env-65"><a href="#Config.load_env-65"><span class="linenos">65</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="Config.load_env-66"><a href="#Config.load_env-66"><span class="linenos">66</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Load environment variables from .env file.&quot;&quot;&quot;</span>
 </span><span id="Config.load_env-67"><a href="#Config.load_env-67"><span class="linenos">67</span></a>        <span class="n">load_dotenv</span><span class="p">()</span>
 </span><span id="Config.load_env-68"><a href="#Config.load_env-68"><span class="linenos">68</span></a>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
