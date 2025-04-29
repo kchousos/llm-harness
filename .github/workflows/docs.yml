@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GH_ACTIONS_DOCS_WORKFLOW }}  # Use your secret name here
     - name: Install uv
       uses: astral-sh/setup-uv@v5
       with:
