@@ -3,7 +3,6 @@
 **/**/__pycache__
 /.coverage
 /coverage.xml
-/assets/
 /.pytest_cache/
 /.mypy_cache/
 /.ruff_cache/
