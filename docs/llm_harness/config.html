@@ -58,6 +58,12 @@
                                 <a class="variable" href="#Config.EXECUTABLE_FILENAME">EXECUTABLE_FILENAME</a>
                         </li>
                         <li>
+                                <a class="variable" href="#Config.MIN_EXECUTION_TIME">MIN_EXECUTION_TIME</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Config.EXECUTION_TIMEOUT">EXECUTION_TIMEOUT</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#Config.load_env">load_env</a>
                         </li>
                 </ul>
@@ -148,11 +154,15 @@
 </span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>    <span class="p">]</span>  <span class="c1"># needed for fuzzing</span>
 </span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>    <span class="n">EXECUTABLE_FILENAME</span> <span class="o">=</span> <span class="s2">&quot;harness&quot;</span>
 </span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>
-</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a>    <span class="nd">@staticmethod</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Load environment variables from .env file.&quot;&quot;&quot;</span>
-</span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a>        <span class="n">load_dotenv</span><span class="p">()</span>
-</span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a>    <span class="n">MIN_EXECUTION_TIME</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># minutes</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>
+</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a>    <span class="n">EXECUTION_TIMEOUT</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="mi">60</span>  <span class="c1"># seconds</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a>
+</span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a>    <span class="nd">@staticmethod</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos">68</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos">69</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Load environment variables from .env file.&quot;&quot;&quot;</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos">70</span></a>        <span class="n">load_dotenv</span><span class="p">()</span>
+</span><span id="L-71"><a href="#L-71"><span class="linenos">71</span></a>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -205,11 +215,15 @@
 </span><span id="Config-61"><a href="#Config-61"><span class="linenos">61</span></a>    <span class="p">]</span>  <span class="c1"># needed for fuzzing</span>
 </span><span id="Config-62"><a href="#Config-62"><span class="linenos">62</span></a>    <span class="n">EXECUTABLE_FILENAME</span> <span class="o">=</span> <span class="s2">&quot;harness&quot;</span>
 </span><span id="Config-63"><a href="#Config-63"><span class="linenos">63</span></a>
-</span><span id="Config-64"><a href="#Config-64"><span class="linenos">64</span></a>    <span class="nd">@staticmethod</span>
-</span><span id="Config-65"><a href="#Config-65"><span class="linenos">65</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="Config-66"><a href="#Config-66"><span class="linenos">66</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Load environment variables from .env file.&quot;&quot;&quot;</span>
-</span><span id="Config-67"><a href="#Config-67"><span class="linenos">67</span></a>        <span class="n">load_dotenv</span><span class="p">()</span>
-</span><span id="Config-68"><a href="#Config-68"><span class="linenos">68</span></a>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+</span><span id="Config-64"><a href="#Config-64"><span class="linenos">64</span></a>    <span class="n">MIN_EXECUTION_TIME</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># minutes</span>
+</span><span id="Config-65"><a href="#Config-65"><span class="linenos">65</span></a>
+</span><span id="Config-66"><a href="#Config-66"><span class="linenos">66</span></a>    <span class="n">EXECUTION_TIMEOUT</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="mi">60</span>  <span class="c1"># seconds</span>
+</span><span id="Config-67"><a href="#Config-67"><span class="linenos">67</span></a>
+</span><span id="Config-68"><a href="#Config-68"><span class="linenos">68</span></a>    <span class="nd">@staticmethod</span>
+</span><span id="Config-69"><a href="#Config-69"><span class="linenos">69</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Config-70"><a href="#Config-70"><span class="linenos">70</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Load environment variables from .env file.&quot;&quot;&quot;</span>
+</span><span id="Config-71"><a href="#Config-71"><span class="linenos">71</span></a>        <span class="n">load_dotenv</span><span class="p">()</span>
+</span><span id="Config-72"><a href="#Config-72"><span class="linenos">72</span></a>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -313,6 +327,30 @@
     
 
                             </div>
+                            <div id="Config.MIN_EXECUTION_TIME" class="classattr">
+                                <div class="attr variable">
+            <span class="name">MIN_EXECUTION_TIME</span>        =
+<span class="default_value">5</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Config.MIN_EXECUTION_TIME"></a>
+    
+    
+
+                            </div>
+                            <div id="Config.EXECUTION_TIMEOUT" class="classattr">
+                                <div class="attr variable">
+            <span class="name">EXECUTION_TIMEOUT</span>        =
+<span class="default_value">1200</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Config.EXECUTION_TIMEOUT"></a>
+    
+    
+
+                            </div>
                             <div id="Config.load_env" class="classattr">
                                         <input id="Config.load_env-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
@@ -325,11 +363,11 @@
 
     </div>
     <a class="headerlink" href="#Config.load_env"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Config.load_env-64"><a href="#Config.load_env-64"><span class="linenos">64</span></a>    <span class="nd">@staticmethod</span>
-</span><span id="Config.load_env-65"><a href="#Config.load_env-65"><span class="linenos">65</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="Config.load_env-66"><a href="#Config.load_env-66"><span class="linenos">66</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Load environment variables from .env file.&quot;&quot;&quot;</span>
-</span><span id="Config.load_env-67"><a href="#Config.load_env-67"><span class="linenos">67</span></a>        <span class="n">load_dotenv</span><span class="p">()</span>
-</span><span id="Config.load_env-68"><a href="#Config.load_env-68"><span class="linenos">68</span></a>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Config.load_env-68"><a href="#Config.load_env-68"><span class="linenos">68</span></a>    <span class="nd">@staticmethod</span>
+</span><span id="Config.load_env-69"><a href="#Config.load_env-69"><span class="linenos">69</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_env</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Config.load_env-70"><a href="#Config.load_env-70"><span class="linenos">70</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Load environment variables from .env file.&quot;&quot;&quot;</span>
+</span><span id="Config.load_env-71"><a href="#Config.load_env-71"><span class="linenos">71</span></a>        <span class="n">load_dotenv</span><span class="p">()</span>
+</span><span id="Config.load_env-72"><a href="#Config.load_env-72"><span class="linenos">72</span></a>        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
