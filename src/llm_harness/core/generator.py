@@ -60,26 +60,14 @@ class HarnessGenerator:
             lm = dspy.LM(f"openai/{self.model}", cache=False)
             dspy.configure(lm=lm)
 
+            harness = dspy.ChainOfThought("project -> libfuzzer_harness")
+
             concatenated_content = project_info.get_concatenated_content()
 
-            response = lm(
-                f"""
-                I have this C project, for which you will find the contents
-                below. Write me a fuzzing harness for the dateparse function.
-                Respond **only** with the harness' code. Make sure to write all
-                the necessary includes etc. The harness will be located in the
-                project root, so make sure the includes work appropriately.
+            response = harness(project=concatenated_content)
 
-                Do not even wrap the code in markdown fences, e.g. ```, because
-                it will be automatically written to a .c file.
+            return str(response.libfuzzer_harness)
 
-                === Source Code ===
-
-                {concatenated_content}
-                """
-            )
-
-            return str(response[0])
         except Exception as e:
             logger.error(f"Error creating harness: {e}")
             raise
