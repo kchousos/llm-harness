@@ -32,6 +32,9 @@ alt="GitHub License" />
 
 **OverHAuL** (*Harness Automation with LLMs*) is a system for automatically generating libFuzzer-compatible harnesses for C projects using ReAct-style LLM agents. It iteratively builds harnesses tailored for effective fuzzing through tool-assisted reasoning — all without manual intervention. OverHAuL's goal is to make fuzzing accessible and immediate, reducing friction and accelerating the path to safer software.
 
+<img width="4762" height="3093" alt="image" src="https://github.com/user-attachments/assets/a19e0204-b8c2-4d16-8774-b017c0fb3834" />
+
+
 ## Installation
 
 ### Dependencies
